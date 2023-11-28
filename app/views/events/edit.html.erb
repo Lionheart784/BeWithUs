@@ -9,6 +9,7 @@
       <%= f.input :end_at, as: :string, input_html: { data: { controller: "datepicker"}} %>
       <%= f.input :location %>
       <%= f.input :description %>
+      <%= f.input :images, as: :file, input_html: {multiple: true} %>
       <%= f.button :submit, class: "btn btn-primary" %>
     <% end %>
   </div>

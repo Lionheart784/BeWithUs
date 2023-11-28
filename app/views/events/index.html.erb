@@ -1,0 +1,54 @@
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <i class="fa-solid fa-hand-sparkles"></i> BeWithUs
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Sign-up</a>
+          </li>
+          <li class="nav-item dropdown">
+            <img class="avatar dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://kitt.lewagon.com/placeholder/users/ssaunier" />
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Me</a>
+              <a class="dropdown-item" data-turbo-method="delete" href="#">Log out</a>
+            </div>
+          </li>
+          <!--li class="nav-item"-->
+          <!--/li-->
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<h1 class="mt-5 mb-5 fs-2 fw-bold ms-4">Check out our events:</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12  d-flex justify-conten-center">
+
+            <% @events.each do |event|%>
+              <div class="card mb-5 mx-3" style="width: 24rem;">
+                <div class="card-body">
+                  <img src="https://images.unsplash.com/photo-1545622783-b3e021430fee?q=80&w=868&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="christmas" class="card-img-top mb-2" alt="event image">
+                  <div class="card-title fs-6 pb-2" style="height: 5rem"><%= event.title %></div>
+                    <div class="list-group-item">
+                      <p>From <%= event.start_at.strftime('%m/%d/%Y')%> to <%= event.end_at.strftime('%m/%d/%Y') %></p>
+                      <p><%= event.location %></p>
+                    </div>
+                  <a href="#" class="card-link">See More</a>
+                </div>
+              </div>
+            <% end %>
+
+      </div>
+    </div>
+  </div>

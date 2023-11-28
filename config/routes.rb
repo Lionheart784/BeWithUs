@@ -13,5 +13,5 @@ Rails.application.routes.draw do
     resources :bookings, only: [:create]
   end
   resources :bookings, only: [:update]
-  get "/me", to: "users#me", as: :me
+  get "/users/:id", to: "users#me", as: :me
 end

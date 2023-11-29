@@ -16,15 +16,15 @@
   }
   
   .btn-flat {
-    color: white;
+    color: rgb(17, 9, 9);
     padding: 8px 24px;
     border-radius: 4px;
-    background: #670BFF;
+    background: #dfd2f3;
     transition: background 0.3s ease;
   }
   
   .btn-flat:hover {
-    background: #4D04C4;
+    background: #c4a404;
     color: white;
   }
   
@@ -41,4 +41,35 @@
   .btn-gradient:hover {
     background: linear-gradient(#147EFF, #0F67DA);
     color: white;
+  }
+  .banner {
+    background-size: cover;
+    background-position: center;
+    padding: 150px 0;
+  }
+  
+  .banner h1 {
+    margin: 0;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    font-size: 32px;
+    font-weight: bold;
+  }
+  
+  .banner p {
+    font-size: 20px;
+    color: white;
+    opacity: .7;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  }
+  
+  .container-text {
+    width: 500px;   /* This sets the width */
+    margin: 0 auto; /* This automatically sets left/right margins */
+    border: 5px solid #080808;
+    border-radius: 10px;
+  }
+
+  .container-seeallevents {
+    text-align: right;
   }

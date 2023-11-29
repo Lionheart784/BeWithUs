@@ -15,7 +15,7 @@ class BookingsController < ApplicationController
   # params[:booking]
     @booking = Booking.find(params[:id])
     @booking.update(confirmed: !@booking.confirmed)
-    redirect_to me_path(@booking.event.user), status: :see_other
+    redirect_to me_path, status: :see_other
   end
 
 end

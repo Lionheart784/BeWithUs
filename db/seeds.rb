@@ -40,15 +40,15 @@
 
 # e = Event.create!(title: 'last thing is eat candy', description: 'prepare all things sweet', location: 'iceland', start_at: '2024-10-1', end_at:'2023-1-31', user: User.all.sample)
 # puts "Event id #{e.id} created"
-event = Event.all.sample
-user = User.where.not(id: event.user_id).sample
+# event = Event.all.sample
+# user = User.where.not(id: event.user_id).sample
 
-n=Booking.create(
-  user: user,
-  event: event,
-  confirmed: true
-)
-puts "booking id #{n.id} created"
+# n=Booking.create(
+#   user: user,
+#   event: event,
+#   confirmed: true
+# )
+# puts "booking id #{n.id} created"
 # Booking.create(user: User.all.sample,event:Event.all.sample,confirmed:false)
 # Booking.create(user: User.all.sample,event:Event.all.sample,confirmed:true)
 # Booking.create(user: User.all.sample,event:Event.all.sample,confirmed:false)

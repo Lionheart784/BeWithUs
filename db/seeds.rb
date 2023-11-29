@@ -7,12 +7,14 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+
 user = User.create!(
-email: 'samuel@gmail.com',
-password: '123456',
-first_name: 'Samuel',
-last_name: 'Jackson',
-introduction: 'Hi, I am Samuel. I come from America. I love travel and food!'
+  email: 'samuel@gmail.com',
+  password: '123456',
+  first_name: 'Samuel',
+  last_name: 'Jackson',
+  introduction: 'Hi, I am Samuel. I come from America. I love travel and food!'
 )
 puts "User id #{user.id} created"
 
@@ -32,4 +34,5 @@ e = Event.create!(title: 'Traditional Chinese Spring Festival with Harbin local 
 puts "Event id #{e.id} created"
 
 e = Event.create!(title: 'An Exciting Halloween with Vampire Family!', description: 'Join us and enjoy a grand exciting Halloween party.', location: 'San Diego', start_at: '2024-10-31', end_at:'2023-10-31', user: User.all.sample)
+
 puts "Event id #{e.id} created"

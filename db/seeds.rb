@@ -54,6 +54,7 @@ puts "booking id #{n.id} created"
 # Booking.create(user: User.all.sample,event:Event.all.sample,confirmed:false)
 # Booking.create(user: User.all.sample,event:Event.all.sample,confirmed:true)
 # Booking.create(user: User.all.sample,event:Event.all.sample,confirmed:false)
+
 user = User.create!(
   email: 'samuel@gmail.com',
   password: '123456',
@@ -79,4 +80,5 @@ e = Event.create!(title: 'Traditional Chinese Spring Festival with Harbin local 
 puts "Event id #{e.id} created"
 
 e = Event.create!(title: 'An Exciting Halloween with Vampire Family!', description: 'Join us and enjoy a grand exciting Halloween party.', location: 'San Diego', start_at: '2024-10-31', end_at:'2023-10-31', user: User.all.sample)
+
 puts "Event id #{e.id} created"

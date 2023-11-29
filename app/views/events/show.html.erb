@@ -5,25 +5,25 @@
     <p class='fs-5 lh-1'>From <%= @event.start_at.strftime('%m/%d/%Y')%> to <%= @event.end_at.strftime('%m/%d/%Y') %></p>
     <p class='fs-5 lh-1'><%= @event.location %></p>
     <p class='fs-6'><%= @event.description %></p>
-    <%= link_to 'Book Now', new_booking_path, class: 'btn btn-primary' %>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Book Now</button>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#book_now_modal">Book Now</button>
   </div>
 </div>
 
-<%# <div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <!-- Modal content-->
+<div class="modal fade" id="book_now_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
+        <h5 class="modal-title" id="exampleModalLabel">Book Now</h5>
       </div>
       <div class="modal-body">
-        <p>Some text in the modal.</p>
+        <p>From <%= @event.start_at %> to <%= @event.end_at %></p>
+        <p><%= @event.location %></p>
+        <p><%= @event.description %></p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <%= button_to "Book Now", event_bookings_path(@event), method: :post, class: "btn btn-primary" %>
       </div>
     </div>
   </div>
-</div> %>
+</div>

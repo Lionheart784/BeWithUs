@@ -1,0 +1,76 @@
+<h3>Welcome!Dear <%= @user.first_name%>!</h3>
+   <button type="button" class="btn btn-light">
+   <%= link_to "Create an event", new_event_path%>
+  </button>
+
+
+<div>
+  <h2>All your events & related bookings as host:</h2>
+  <div>
+    <% @user.events.each do |event|%>
+    <% bookings = []<< Booking.find_by(event: event) %>
+    <div class="col-12 col-sm-6 mb-4 container" data-aos="zoom-in">
+      <div class="bg-white rounded shadow container text-center">
+          <div class="p-3 rounded-bottom d-flex flex-column">
+            <strong>Title:   <%= event.title %> </strong>
+             <small class="text-muted">description:   <%= event.description %></small>
+             <span class="text-muted font-weight-normal">start at:   <%= event.start_at %></span>
+             <span class="text-muted font-weight-normal">end at:   <%= event.end_at %></span>
+            <div>
+              <% bookings.each do |booking|%>
+              <% if booking !=nil %>
+                  <div class="col-12 col-sm-6 mb-4 container" data-aos="zoom-in">
+                     <div class="bg-white rounded shadow container text-center">
+                       <div class="p-3 rounded-bottom d-flex flex-column">
+                         <strong>Applicant:</strong> <%= booking.user.first_name %> · <%= booking.user.last_name %>
+                          <strong>introduction:</strong>   <%= booking.user.introduction %>
+                          <strong>email:</strong>   <%= booking.user.email %>
+
+                          <%= link_to booking_path(booking),data: { turbo_method: :patch } do %>
+                            <button class="btn btn-light">
+                              <small class="text-muted"style="font-weight:bold">confirmed: <%= booking.confirmed %></small>
+                            </button>
+                          <% end %>
+
+                        </div>
+                     </div>
+                   </div>
+            </div>
+            <% if booking.confirmed%>
+          <span></span>
+          <% else %>
+            <button type="button" class="btn btn-light">
+               <%= link_to "delete", event_path(event),data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete '#{event.title}' from your event list?"}%>
+            </button>
+            <button type="button" class="btn btn-light">
+               <%= link_to "update", edit_event_path(event)%>
+            </button>
+            <% end %>
+                  <% else %>
+                        <small class="text-muted" style="font-style: oblique;font-weight:bold">sorry no booked</small>
+                  <% end %>
+                <% end %>
+            </div>
+          </div>
+      </div>
+  </div>
+  <% end %>
+</div>
+
+
+<div>
+  <h2>All your bookings as attendee:</h2>
+  <div>
+    <% @user.bookings.each do |booking|%>
+    <div class="col-12 col-sm-6 mb-4 container" data-aos="zoom-in">
+      <div class="bg-white rounded shadow container text-center">
+          <div class="p-3 rounded-bottom d-flex flex-column">
+            <strong>Title: <%= booking.event.title %> </strong>
+            <small class="text-muted">show details</small>
+            <small class="text-muted"style="font-weight:bold">confirmed:   <%= booking.confirmed %></small>
+          </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>

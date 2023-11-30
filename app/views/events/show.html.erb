@@ -1,6 +1,29 @@
-<div class='fs-2 text-center mt-5 pb-10'>
-  <div class='fw-bold'><%= @event.title %></div>
-  <img class="mt-3 mb-4 rounded-4 w-50" src="https://images.unsplash.com/photo-1545622783-b3e021430fee?q=80&w=868&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="event image">
+<div class='fs-2 text-center mt-5 pb-5'>
+  <div class='fw-bold'><%= @event.title %>
+</div>
+
+<%# Below is the carousel %>
+<div class="container">
+  <div id="carouselExample" class="carousel slide mt-3 mb-4">
+    <ol class="carousel-inner">
+      <% @event.images.each.with_index do |img, index| %>
+        <li class="carousel-item <%= 'active' if index.zero? %>">
+          <%= cl_image_tag(img.key, height: 600, class:"object-fit-cover border rounded w-100") %></li>
+      <% end %>
+    </ol>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+<%# Above is the carousel %>
+
+
   <div>
     <p class='fs-5 lh-1'>From <%= @event.start_at.strftime('%m/%d/%Y')%> to <%= @event.end_at.strftime('%m/%d/%Y') %></p>
     <p class='fs-5 lh-1'><%= @event.location %></p>
@@ -22,7 +45,11 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <%= button_to "Book Now", event_bookings_path(@event), method: :post, class: "btn btn-primary" %>
+        <% if @event.user != current_user %>
+          <%= button_to "Book Now", event_bookings_path(@event), method: :post, class: "btn btn-primary" %>
+        <% else %>
+          <%= link_to "Book Now", edit_event_path(@event), class: "btn btn-primary" %>
+        <% end %>
       </div>
     </div>
   </div>

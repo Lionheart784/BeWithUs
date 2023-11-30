@@ -1,16 +1,16 @@
 <div class="container w-50">
-  <div class="mt-5">
-    <h2>Create an event here:</h2>
+  <div class="mt-5 w-80">
+    <div class="mb-4 fs-2">Create an event here:</div>
   </div>
-  <div>
+  <div class="mx-2">
     <%= simple_form_for @event do |f| %>
       <%= f.input :title %>
       <%= f.input :start_at, as: :string, input_html: { data: { controller: "datepicker"}} %>
       <%= f.input :end_at, as: :string, input_html: { data: { controller: "datepicker"}} %>
       <%= f.input :location %>
-      <%= f.input :description %>
+      <%= f.input :description, as: :text %>
       <%= f.input :images, as: :file, input_html: {multiple: true} %>
-      <%= f.button :submit, class: "btn btn-primary" %>
+      <%= f.button :submit, class: "btn btn-primary mt-3" %>
     <% end %>
   </div>
 </div>

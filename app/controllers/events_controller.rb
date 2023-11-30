@@ -37,7 +37,7 @@ class EventsController < ApplicationController
   def destroy
     @event=Event.find(params[:id])
     @event.destroy
-    redirect_to me_path(@event.user), status: :see_other
+    redirect_to me_path, status: :see_other
   end
 
   private

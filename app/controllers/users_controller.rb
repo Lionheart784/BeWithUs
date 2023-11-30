@@ -4,4 +4,6 @@ class UsersController < ApplicationController
     # current_user
     @user = current_user
   end
+
+
 end

@@ -10,8 +10,12 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index
   resources :events do
+    member do
+      patch :cancel
+    end
     resources :bookings, only: [:create]
   end
+  # patch "events/:id",to: "events#cancel",as: :cancel
   resources :bookings, only: [:update]
   get "/me", to: "users#me", as: :me
 end

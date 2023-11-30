@@ -40,6 +40,12 @@ class EventsController < ApplicationController
     redirect_to me_path, status: :see_other
   end
 
+  def cancel
+    @event = Event.find(params[:id])
+    @event.update(canceled: !@event.canceled)
+    redirect_to me_path, status: :see_other
+  end
+
   private
 
   def event_params

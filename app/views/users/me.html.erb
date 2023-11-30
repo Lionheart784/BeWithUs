@@ -3,86 +3,115 @@
    <%= link_to "Create an event", new_event_path%>
   </button>
 
-
-<div>
-  <h2>All your events & related bookings as host:</h2>
-  <div>
-    <% @user.events.each do |event|%>
-      <div class="col-12 col-sm-6 mb-4 container" data-aos="zoom-in">
-        <div class="bg-white rounded shadow container text-center">
-          <div class="p-3 rounded-bottom d-flex flex-column">
-            <strong><%= event.title %></strong>
-            <small class="text-muted">description: <%= event.description %></small>
-            <span class="text-muted font-weight-normal">start at: <%= event.start_at %></span>
-            <span class="text-muted font-weight-normal">end at: <%= event.end_at %></span>
-            <strong>bookings recieved:</strong>
-            <div>
-              <% if event.bookings.blank? %>
-                <p class="text-muted" style="font-style: oblique;font-weight:bold">sorry no booked</p>
-              <% else %>
-                <% event.bookings.each do |booking|%>
-                  <div class="col-12 col-sm-6 mb-4 container" data-aos="zoom-in">
-                    <div class="bg-white rounded shadow container text-center">
-                      <div class="p-3 rounded-bottom d-flex flex-column">
-                        <p>Applicant:<%= booking.user.first_name %> · <%= booking.user.last_name %></p>
-                        <div class="btn-group">
-                          <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                            show details
-                          </button>
-                          <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"><strong>introduction:</strong><%= booking.user.introduction %></a></li>
-                            <li><a class="dropdown-item" href="#"> <strong>email:</strong><%= booking.user.email %></a></li>
-                          </ul>
+<div class="container text-center ">
+  <div class="row">
+    <div class="col-6 align-items-start ">
+      <h2>All your events & related bookings as host:</h2>
+      <div>
+        <% @user.events.each do |event|%>
+          <div class="col-12 col-sm-6 mb-4 container" data-aos="zoom-in">
+            <div class="bg-white rounded shadow container text-center">
+              <div class="p-3 rounded-bottom d-flex flex-column">
+                <strong><%= event.title %></strong>
+                <small class="text-muted">description: <%= event.description %></small>
+                <span class="text-muted font-weight-normal">start at: <%= event.start_at %></span>
+                <span class="text-muted font-weight-normal">end at: <%= event.end_at %></span>
+                <strong>bookings recieved:</strong>
+                <div>
+                  <% if event.bookings.blank? %>
+                    <p class="text-muted" style="font-style: oblique;font-weight:bold">sorry no booked</p>
+                      <button type="button" class="btn btn-light">
+                      <%= link_to "delete", event_path(event),data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete '#{event.title}' from your event list?"}%>
+                      </button>
+                  <% else %>
+                    <% event.bookings.each do |booking|%>
+                      <div class="col-12 col-sm-6 mb-4 container" data-aos="zoom-in">
+                        <div class="bg-white rounded shadow container text-center">
+                          <div class="p-3 rounded-bottom d-flex flex-column">
+                            <p>Applicant:<%= booking.user.first_name %> · <%= booking.user.last_name %></p>
+                            <div class="btn-group">
+                              <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                show details
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#"><strong>introduction:</strong><%= booking.user.introduction %></a></li>
+                                <li><a class="dropdown-item" href="#"> <strong>email:</strong><%= booking.user.email %></a></li>
+                              </ul>
+                            </div>
+                            <%= link_to booking_path(booking),data: { turbo_method: :patch } do %>
+                              <button class="btn btn-light">
+                                <small class="text-muted"style="font-weight:bold">confirmed: <%= booking.confirmed %></small>
+                              </button>
+                            <% end %>
+                          </div>
                         </div>
-                        <%= link_to booking_path(booking),data: { turbo_method: :patch } do %>
-                          <button class="btn btn-light">
-                            <small class="text-muted"style="font-weight:bold">confirmed: <%= booking.confirmed %></small>
-                          </button>
-                        <% end %>
                       </div>
-                    </div>
-                  </div>
+                    <% end %>
+                  <% end %>
+                </div>
+                <% if event.bookings.where(confirmed: true).blank? %>
+                  <button type="button" class="btn btn-light">
+                    <%= link_to "update", edit_event_path(event)%>
+                  </button>
+                  <%= link_to cancel_event_path(event),data: { turbo_method: :patch }  do %>
+                    <button  class="btn btn-light">
+                      <small class="text-muted"style="font-weight:bold">published: <%= !event.canceled %></small>
+                    </button>
+                  <% end %>
                 <% end %>
-              <% end %>
+              </div>
             </div>
-            <% if event.bookings.where(confirmed: true).blank? %>
-              <button type="button" class="btn btn-light">
-                <%= link_to "delete", event_path(event),data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete '#{event.title}' from your event list?"}%>
-              </button>
-              <button type="button" class="btn btn-light">
-                <%= link_to "update", edit_event_path(event)%>
-              </button>
-            <% end %>
           </div>
         </div>
-      </div>
+        <% end %>
     </div>
-    <% end %>
-</div>
 
 
-<div>
-  <h2>All your bookings as attendee:</h2>
-  <div>
-    <% @user.bookings.each do |booking|%>
-    <div class="col-12 col-sm-6 mb-4 container" data-aos="zoom-in">
-      <div class="bg-white rounded shadow container text-center">
-          <div class="p-3 rounded-bottom d-flex flex-column">
-            <strong><%= booking.event.title %> </strong>
-                           <div class="btn-group">
-                             <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                      show details
-                            </button>
-                             <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#"><small class="text-muted">description:   <%=  booking.event.description %></small></a></li>
-                              <li><a class="dropdown-item" href="#"> <span class="text-muted font-weight-normal">start at:   <%=  booking.event.start_at %></span></a></li>
-                              <li><a class="dropdown-item" href="#"><span class="text-muted font-weight-normal">end at:   <%=  booking.event.end_at %></span></a></li>
-                            </ul>
-                          </div>
-            <small class="text-muted"style="font-weight:bold">confirmed:   <%= booking.confirmed %></small>
-          </div>
+    <div class="col-6 align-items-start ">
+      <h2>All your bookings as attendee:</h2>
+      <div>
+        <% @user.bookings.each do |booking|%>
+          <% if booking.event.canceled %>
+              <div class="col-12 col-sm-6 mb-4 container">
+                <div class="bg-white rounded shadow container text-center">
+                  <div class="p-3 rounded-bottom d-flex flex-column">
+                    <strong><%= booking.event.title %> </strong>
+                                  <div class="btn-group">
+                                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                              show details
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                      <li><a class="dropdown-item" href="#"><small class="text-muted">description:   <%=  booking.event.description %></small></a></li>
+                                      <li><a class="dropdown-item" href="#"> <span class="text-muted font-weight-normal">start at:   <%=  booking.event.start_at %></span></a></li>
+                                      <li><a class="dropdown-item" href="#"><span class="text-muted font-weight-normal">end at:   <%=  booking.event.end_at %></span></a></li>
+                                    </ul>
+                                  </div>
+                    <small class="text-danger fs-3">Sorry,event has been Canceled by host</small>
+                  </div>
+              </div>
+            </div>
+          <%else%>
+            <div class="col-12 col-sm-6 mb-4 container">
+              <div class="bg-white rounded shadow container text-center">
+                  <div class="p-3 rounded-bottom d-flex flex-column">
+                    <strong><%= booking.event.title %> </strong>
+                                  <div class="btn-group">
+                                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                              show details
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                      <li><a class="dropdown-item" href="#"><small class="text-muted">description:   <%=  booking.event.description %></small></a></li>
+                                      <li><a class="dropdown-item" href="#"> <span class="text-muted font-weight-normal">start at:   <%=  booking.event.start_at %></span></a></li>
+                                      <li><a class="dropdown-item" href="#"><span class="text-muted font-weight-normal">end at:   <%=  booking.event.end_at %></span></a></li>
+                                    </ul>
+                                  </div>
+                    <small class="text-muted"style="font-weight:bold">confirmed:   <%= booking.confirmed %></small>
+                  </div>
+              </div>
+            </div>
+          <%end%>
+      <% end %>
       </div>
     </div>
   </div>
-  <% end %>
 </div>

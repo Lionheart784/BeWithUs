@@ -1,5 +1,4 @@
 class BookingsController < ApplicationController
-
   def create
     @booking = Booking.new
     @booking.user = current_user
@@ -17,5 +16,4 @@ class BookingsController < ApplicationController
     @booking.update(confirmed: !@booking.confirmed)
     redirect_to me_path, status: :see_other
   end
-
 end

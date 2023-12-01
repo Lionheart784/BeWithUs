@@ -19,11 +19,11 @@
 <div class="row background-home">
 
   <div class="col-6 d-grid gap-2 mb-2 ">
-     <button class="btn btn-danger pt-3 custom-btn" ><h3 style="color:white">All your events & related bookings as host</h3></button>
+     <button class="btn btn-primary pt-3" ><h3 style="color:white">All your events & related bookings as host</h3></button>
   </div>
 
   <div class="col-6 d-grid gap-2 mb-2  ">
-     <button class="btn btn-danger pt-3 custom-btn" ><h3 style="color:white">All your bookings as attendee</h3></button>
+     <button class="btn btn-primary pt-3" ><h3 style="color:white">All your bookings as attendee</h3></button>
   </div>
 
 
@@ -56,13 +56,13 @@
                           <nav class="navbar navbar-expand-lg navbar-dark custom-card mt-3">
                             <div class="container-fluid">
                               <a class="navbar-brand" href="#"></a>
-                              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                              <button class="navbar-toggler"  data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                               </button>
                               <div class="collapse navbar-collapse" id="navbarNavDarkDropdown" style="display: flex;justify-content: space-between;align-items: flex-end;position: relative;">
                                 <ul class="navbar-nav"style="position: absolute;top:-20px">
                                   <li class="nav-item dropdown "style="position: absolute;">
-                                    <button class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <button class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                       Show details
                                     </button>
                                     <ul class="dropdown-menu">
@@ -72,13 +72,13 @@
                                   </li>
                                   <li style="position: absolute;left: 370px;">
                                     <%= link_to booking_path(booking),data: { turbo_method: :patch } do %>
-                                    <button class="btn btn-light ">
+                                    <button class="btn btn-primary ">
                                     confirm:
                                     </button>
                                     <% end %>
                                 </li>
                                  <li style="position: absolute;left: 460px;">
-                                    <button class="btn btn-white">
+                                    <button class="btn custom-card">
                                       <% if booking.confirmed %>
                                       ✅
                                       <% else %>
@@ -107,20 +107,20 @@
                     <ul class="navbar-nav"style="position: absolute;top:-20px">
                       <li class="nav-item dropdown "style="position: absolute;">
                         <%= link_to edit_event_path(event),style:"color:white;text-decoration:none" do %>
-                                <button  class="btn custom-update">
-                                update
+                                <button  class="btn btn-primary">
+                                Edit
                                 </button>
                          <% end %>
                       </li>
                       <li style="position: absolute;left: 200px;">
                         <%= link_to cancel_event_path(event),data: { turbo_method: :patch }  do %>
-                        <button  class="btn custom-confirm">
-                          published:
+                        <button  class="btn btn-primary">
+                          Publish
                         </button>
                          <% end %>
                       </li>
                       <li style="position: absolute;left: 310px;">
-                                      <button class="btn btn-white">
+                                      <button class="btn  btn-light">
                                         <% if !event.canceled  %>
                                         ✅
                                         <% else %>
@@ -129,7 +129,7 @@
                                       </button>
                       </li>
                       <li style="position: absolute;left: 460px;">
-                        <button type="button" class="btn btn-danger">
+                        <button type="button" class="btn btn-primary">
                         <%= link_to "delete", event_path(event),style:"text-decoration:none;color:white",data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete '#{event.title}' from your event list?"}%>
                         </button>
                       </li>
@@ -148,20 +148,20 @@
                     <ul class="navbar-nav"style="position: absolute;top:-20px">
                       <li class="nav-item dropdown "style="position: absolute;">
                         <%= link_to edit_event_path(event),style:"color:white;text-decoration:none" do %>
-                                <button  class="btn custom-update">
+                                <button  class="btn btn-primary">
                                 update
                                 </button>
                         <% end %>
                       </li>
                       <li style="position: absolute;left: 200px;">
                         <%= link_to cancel_event_path(event),data: { turbo_method: :patch }  do %>
-                        <button  class="btn custom-confirm">
+                        <button  class="btn btn-primary">
                           published:
                         </button>
                          <% end %>
                       </li>
                       <li style="position: absolute;left: 310px;">
-                                      <button class="btn btn-white">
+                                      <button class="btn  btn-light">
                                         <% if !event.canceled  %>
                                         ✅
                                         <% else %>
@@ -198,7 +198,7 @@
                     <div class="collapse navbar-collapse" id="navbarNavDarkDropdown" style="display: flex;justify-content: space-between;align-items: flex-end;position: relative;">
                       <ul class="navbar-nav"style="position: absolute;top:-20px">
                         <li class="nav-item dropdown "style="position: absolute;">
-                          <button type="button" class="btn btn-info custom-card dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                          <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                             show details
                         </button>
                         <ul class="dropdown-menu">
@@ -236,7 +236,7 @@
                     <div class="collapse navbar-collapse" id="navbarNavDarkDropdown" style="display: flex;justify-content: space-between;align-items: flex-end;position: relative;">
                       <ul class="navbar-nav"style="position: absolute;top:-20px">
                         <li class="nav-item dropdown "style="position: absolute;">
-                          <button type="button" class="btn btn-info custom-card dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                          <button type="button" class="btn btn-primary custom-card dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                             show details
                         </button>
                         <ul class="dropdown-menu">
@@ -256,7 +256,7 @@
                           <p class="fs-5"> confirmed?</p>
                       </li>
                       <li style="position: absolute;left: 480px;">
-                          <button class="btn btn-white">
+                          <button class="btn btn-light">
                             <% if booking.confirmed %>
                             ✅
                             <% else %>
@@ -276,13 +276,9 @@
     </div>
   </div>
 
-  <div class="col-6 d-grid gap-2 mb-2 ">
-    <div class="row">
-      <button class="btn btn-danger pt-3 custom-btn mb-5 col-4 offset-4" >
-        <%= link_to new_event_path ,style:"text-decoration:none" do%>
-          <p style="color:white; font-size:18px">Create a new event</p>
-        <%end%>
-      </button>
+  <div class="col-6 d-grid gap-2 mb-4">
+    <div class="mx-auto">
+      <%= link_to "Create a new event", new_event_path, class: "btn btn-primary" %>
     </div>
   </div>
 

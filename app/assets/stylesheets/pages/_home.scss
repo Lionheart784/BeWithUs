@@ -11,11 +11,11 @@
 //     text-align: right;
 //     margin-top: 50px
   // }
-  
+
   // .btn-ghost:hover {
   //   opacity: 1;
   // }
-  
+
   .btn-flat {
     color: rgb(17, 9, 9);
     padding: 8px 24px;
@@ -24,12 +24,12 @@
     transition: background 0.3s ease;
     border: 2px solid #080808;
   }
-  
+
   .btn-flat:hover {
     background: #c4a404;
     color: #f0ead6;
   }
-  
+
   .btn-gradient {
     color: white;
     padding: 8px 24px;
@@ -39,7 +39,7 @@
     transition: background 0.3s ease;
     border: 1px solid #0F60C4;
   }
-  
+
   .btn-gradient:hover {
     background: linear-gradient(#147EFF, #0F67DA);
     color: white;
@@ -49,7 +49,7 @@
     background-position: center;
     padding: 150px 0;
   }
-  
+
   .banner h1 {
     margin: 0;
     color: white;
@@ -57,14 +57,14 @@
     font-size: 32px;
     font-weight: bold;
   }
-  
+
   .banner p {
     font-size: 20px;
     color: white;
     opacity: .7;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
   }
-  
+
   .container-text {
     width: 500px;   /* This sets the width */
     margin: 0 auto; /* This automatically sets left/right margins */

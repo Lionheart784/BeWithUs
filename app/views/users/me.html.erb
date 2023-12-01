@@ -185,22 +185,41 @@
     <div>
       <% @user.bookings.each do |booking|%>
         <% if booking.event.canceled %>
-          <div class="mb-5">
+         <div class="mb-5">
             <div class="bg-white rounded shadow text-center">
-              <div class="p-3 rounded-bottom d-flex flex-column">
-                <strong><%= booking.event.title %> </strong>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    show details
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#"><span class="text-muted font-weight-normal">description: <%=  booking.event.description %></span></a></li>
-                    <li><a class="dropdown-item" href="#"> <span class="text-muted font-weight-normal">start at: <%=  booking.event.start_at %></span></a></li>
-                    <li><a class="dropdown-item" href="#"><span class="text-muted font-weight-normal">end at: <%=  booking.event.end_at %></span></a></li>
-                  </ul>
+                <div class="p-3 rounded-bottom d-flex flex-column">
+                  <strong><%= booking.event.title %> </strong>
+                <nav class="navbar navbar-expand-lg navbar-dark bg-white mt-5">
+                  <div class="container-fluid">
+                    <a class="navbar-brand" href="#"></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown" style="display: flex;justify-content: space-between;align-items: flex-end;position: relative;">
+                      <ul class="navbar-nav"style="position: absolute;top:-20px">
+                        <li class="nav-item dropdown "style="position: absolute;">
+                          <button type="button" class="btn btn-info custom-card dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            show details
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#">
+                            <% if booking.event.images.attached? %>
+                                    <%= cl_image_tag(booking.event.images[0].key,height: 250, class:"object-fit-cover border rounded w-100") %>
+                            <% else %>
+                                    <img src="https://images.unsplash.com/photo-1515288207449-100e125abccb?q=80&w=2569&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="image-placeholder" class="card-img-top mb-1 object-fit-cover border rounded w-100" style="height:250px" alt="event image">
+                            <% end %>
+                          </a></li>
+                          <li><a class="dropdown-item" href="#"><small class="text-muted">description:   <%=  booking.event.description %></small></a></li>
+                          <li><a class="dropdown-item" href="#"> <span class="text-muted font-weight-normal">start at:   <%=  booking.event.start_at %></span></a></li>
+                          <li><a class="dropdown-item" href="#"><span class="text-muted font-weight-normal">end at:   <%=  booking.event.end_at %></span></a></li>
+                        </ul>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </nav>
+                 <small class="text-danger fs-3">Sorry,event has been Canceled by host</small>
                 </div>
-                <small class="text-danger fs-3">Sorry,event has been Canceled by host</small>
-              </div>
             </div>
           </div>
         <%else%>
